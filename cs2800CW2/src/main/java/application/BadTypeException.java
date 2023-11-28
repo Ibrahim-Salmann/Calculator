@@ -1,4 +1,4 @@
-package uk.ac.rhul.cs2800;
+package application;
 
 /**
  * A custom exception class representing an exceptional situation when an incorrect or unsupported
