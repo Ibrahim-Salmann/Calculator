@@ -43,8 +43,15 @@ class TestNumStack {
   }
   
   @Test
-  //Test 4
+  //Test 4; Created the top method
   void testTopOnEmptyStack() {
     assertThrows(EmptyStackException.class, () -> numStack.top(), "it is not possible to get the top value from an empty stack.");
+  }
+  
+  @Test 
+  //Test 5; Success 
+  void testTopStack() {
+    numStack.push(22.2f);
+    assertEquals(numStack.top(), 22.2f,  "top should return the last pushed value on the stack.");
   }
 }
