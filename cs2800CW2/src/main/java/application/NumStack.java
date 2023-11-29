@@ -25,7 +25,7 @@ public class NumStack {
 
   /**
    * @return float value pushed
-   * @throws BadTypeException
+   * @throws EmptyStackException
    */
   public float pop() throws BadTypeException {
     if (numStack.size() == 0) {
@@ -34,11 +34,22 @@ public class NumStack {
     return numStack.pop().getFloatValue();
   }
 
+  /**
+   * @return
+   * @throws EmptyStackException
+   */
   public float top() throws BadTypeException {
     if (numStack.size() == 0) {
       throw new EmptyStackException();
     }
     return numStack.top().getFloatValue();
+  }
+
+  /**
+   * @return size
+   */
+  public int size() {
+    return numStack.size();
   }
 
 }
