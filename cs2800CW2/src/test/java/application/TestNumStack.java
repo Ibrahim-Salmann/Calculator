@@ -65,4 +65,27 @@ class TestNumStack {
     numStack.push(1995.6f);
     assertEquals(numStack.size(), 4, "returns 4 after pushing 4 entries into the stack");
   }
+
+  @Test
+  // Test 7; Success
+  void testPushThenPop() {
+    numStack.push(1960.0f);
+    numStack.push(1977.0f);
+    numStack.push(1985.0f);
+    numStack.push(1995.6f);
+    assertEquals(numStack.StackisEmpty(), false, "checks if the stack is empty");
+    assertEquals(numStack.pop(), 1995.6f, "returns the recent entry push into the stack");
+    assertEquals(numStack.StackisEmpty(), false,
+        "it will return false as only one entry has been poped");
+    assertEquals(numStack.pop(), 1985.0f, "returns the recent entry push into the stack");
+    assertEquals(numStack.StackisEmpty(), false,
+        "still returns false as only two entry has been poped");
+    assertEquals(numStack.pop(), 1977.0f, "returns the recent entry push into the stack");
+    assertEquals(numStack.StackisEmpty(), false, "again false as only three entry has been poped");
+    assertEquals(numStack.pop(), 1960.0f, "returns the recent entry push into the stack");
+    assertEquals(numStack.StackisEmpty(), true,
+        "finally returns true as all entries have been poped");
+
+
+  }
 }
