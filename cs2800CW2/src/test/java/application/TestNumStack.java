@@ -88,4 +88,16 @@ class TestNumStack {
 
 
   }
+  
+  @Test
+  //Test 9;
+  void testMultiplePushAndPop() {
+    numStack.push(1960.0f);
+    numStack.push(1977.0f);
+    numStack.pop();
+    numStack.push(1985.0f);
+    assertEquals(numStack.top(), 1985.0f, "top should return the last pushed value");
+    assertEquals(numStack.size(), 2, "size should be 2 after multiple push and pop operations");
+    
+  }
 }
