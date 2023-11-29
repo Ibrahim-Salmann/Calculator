@@ -1,5 +1,8 @@
 package application;
 
+/**
+ * @author Ibraheem
+ */
 public class NumStack {
   
   private Stack numStack;
@@ -11,6 +14,11 @@ public class NumStack {
   
   public boolean StackisEmpty() {
     return numStack.size() == 0;
+  }
+
+  public void push(float entry) {
+    numStack.push(new Entry(entry));
+    
   }
 
 }
