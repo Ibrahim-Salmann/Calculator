@@ -4,6 +4,7 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.EmptyStackException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,22 +14,31 @@ import org.junit.jupiter.api.Test;
 class TestNumStack {
 
   private NumStack numStack;
-  
+
   @BeforeEach
   void setup() {
     numStack = new NumStack();
   }
-  
+
   @Test
-  //Test 1; Created NumStack class with variable, constructor, and method. 
+  // Test 1; Created NumStack class with variable, constructor, and method.
   void testStackisEmpty() {
-    assertEquals(numStack.StackisEmpty(), true, "tests wheather the initial stack created is empty.");
+    assertEquals(numStack.StackisEmpty(), true,
+        "tests wheather the initial stack created is empty.");
   }
-  
+
   @Test
-  //Test 2
+  // Test 2; Created the push method.
   void testPush() {
     numStack.push(10.0f);
-    assertEquals(numStack.StackisEmpty(),false, "returns false as an entry has been pushed inro the stack.");
+    assertEquals(numStack.StackisEmpty(), false,
+        "returns false as an entry has been pushed inro the stack.");
+  }
+
+  @Test
+  //Test 3; Created the pop method.
+  void testEmptyPop() {
+    assertThrows(EmptyStackException.class, () -> numStack.pop(),
+        "it is not possible to pop from an empty stack.");
   }
 }
