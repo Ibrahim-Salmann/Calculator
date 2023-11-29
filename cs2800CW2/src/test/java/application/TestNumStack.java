@@ -38,6 +38,8 @@ class TestNumStack {
   @Test
   // Test 3; Created the pop method.
   void testEmptyPop() {
+    // Ensure stack is empty
+    assertTrue(numStack.stackisEmpty(), "Stack should be empty initially");
     assertThrows(EmptyStackException.class, () -> numStack.pop(),
         "it is not possible to pop from an empty stack.");
   }
@@ -45,6 +47,8 @@ class TestNumStack {
   @Test
   // Test 4; Created the top method
   void testTopOnEmptyStack() {
+    // Ensure stack is empty
+    assertTrue(numStack.stackisEmpty(), "Stack should be empty initially");
     assertThrows(EmptyStackException.class, () -> numStack.top(),
         "it is not possible to get the top value from an empty stack.");
   }
