@@ -23,7 +23,7 @@ class TestNumStack {
   @Test
   // Test 1; Created NumStack class with variable, constructor, and method.
   void testStackisEmpty() {
-    assertEquals(numStack.StackisEmpty(), true,
+    assertEquals(numStack.stackisEmpty(), true,
         "tests wheather the initial stack created is empty.");
   }
 
@@ -31,7 +31,7 @@ class TestNumStack {
   // Test 2; Created the push method.
   void testPush() {
     numStack.push(10.0f);
-    assertEquals(numStack.StackisEmpty(), false,
+    assertEquals(numStack.stackisEmpty(), false,
         "returns false as an entry has been pushed inro the stack.");
   }
 
@@ -73,24 +73,24 @@ class TestNumStack {
     numStack.push(1977.0f);
     numStack.push(1985.0f);
     numStack.push(1995.6f);
-    assertEquals(numStack.StackisEmpty(), false, "checks if the stack is empty");
+    assertEquals(numStack.stackisEmpty(), false, "checks if the stack is empty");
     assertEquals(numStack.pop(), 1995.6f, "returns the recent entry push into the stack");
-    assertEquals(numStack.StackisEmpty(), false,
+    assertEquals(numStack.stackisEmpty(), false,
         "it will return false as only one entry has been poped");
     assertEquals(numStack.pop(), 1985.0f, "returns the recent entry push into the stack");
-    assertEquals(numStack.StackisEmpty(), false,
+    assertEquals(numStack.stackisEmpty(), false,
         "still returns false as only two entry has been poped");
     assertEquals(numStack.pop(), 1977.0f, "returns the recent entry push into the stack");
-    assertEquals(numStack.StackisEmpty(), false, "again false as only three entry has been poped");
+    assertEquals(numStack.stackisEmpty(), false, "again false as only three entry has been poped");
     assertEquals(numStack.pop(), 1960.0f, "returns the recent entry push into the stack");
-    assertEquals(numStack.StackisEmpty(), true,
+    assertEquals(numStack.stackisEmpty(), true,
         "finally returns true as all entries have been poped");
 
 
   }
-  
+
   @Test
-  //Test 9;
+  // Test 9;
   void testMultiplePushAndPop() {
     numStack.push(1960.0f);
     numStack.push(1977.0f);
@@ -98,6 +98,6 @@ class TestNumStack {
     numStack.push(1985.0f);
     assertEquals(numStack.top(), 1985.0f, "top should return the last pushed value");
     assertEquals(numStack.size(), 2, "size should be 2 after multiple push and pop operations");
-    
+
   }
 }
