@@ -34,4 +34,11 @@ public class NumStack {
     return numStack.pop().getFloatValue();
   }
 
+  public float top() throws BadTypeException {
+    if (numStack.size() == 0) {
+      throw new EmptyStackException();
+    }
+    return numStack.top().getFloatValue();
+  }
+
 }

@@ -41,4 +41,10 @@ class TestNumStack {
     assertThrows(EmptyStackException.class, () -> numStack.pop(),
         "it is not possible to pop from an empty stack.");
   }
+  
+  @Test
+  //Test 4
+  void testTopOnEmptyStack() {
+    assertThrows(EmptyStackException.class, () -> numStack.top(), "it is not possible to get the top value from an empty stack.");
+  }
 }
