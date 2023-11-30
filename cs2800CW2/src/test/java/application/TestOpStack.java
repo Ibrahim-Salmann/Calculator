@@ -43,15 +43,21 @@ class TestOpStack {
     assertEquals(opStack.top(), Symbol.RIGHT_BRACKET,
         "Returns the most recent  entry of the stack.");
   }
-  
+
   @Test
-  //Test 5; 
+  // Test 5;
   public void testSize() {
     opStack.push(Symbol.DIVIDE);
     opStack.push(Symbol.TIME);
     assertEquals(opStack.size(), 2, "Returns the size 2 after pushing two entries");
   }
-  
-  
+
+  @Test
+  // Test 6;
+  public void testNotEmpty() {
+    opStack.push(Symbol.PLUS);
+    assertEquals(opStack.stackisEmpty(), false,
+        "Tests the stack to see if it is empty. Should now return false.");
+  }
 
 }
