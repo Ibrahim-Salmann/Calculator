@@ -32,6 +32,10 @@ public class StrStack {
     return strStack.top().getStringValue();
   }
 
+  public Integer size() {
+    return strStack.size();
+  }
+
 }
 
 

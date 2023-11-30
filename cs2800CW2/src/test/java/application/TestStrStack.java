@@ -43,4 +43,13 @@ class TestStrStack {
     assertEquals(strStack.top(), "division", "Returns the most recent  entry of the stack.");
   }
 
+  @Test
+  // Test 5;
+  public void testSize() {
+    strStack.push("plus");
+    strStack.push("minus");
+    assertEquals(strStack.size(), 2, "Returns the size 2 after pushing two entries");
+  }
+
+
 }
