@@ -70,7 +70,7 @@ class TestOpStack {
   }
 
   @Test
-  // Test 8;
+  // Test 8; Success
   public void testEmptyStackException() {
     assertThrows(EmptyStackException.class, () -> opStack.pop(null),
         "Popping an empty stack should throw an exception.");
