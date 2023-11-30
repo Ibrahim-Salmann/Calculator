@@ -18,11 +18,18 @@ public class StrStack {
 
   }
 
-  public String pop(String string) {
+  public String pop(String string) throws BadTypeException {
     if (strStack.size() == 0) {
       throw new EmptyStackException();
     }
     return strStack.pop().getStringValue();
+  }
+
+  public String top() throws BadTypeException {
+    if (strStack.size() == 0) {
+      throw new EmptyStackException();
+    }
+    return strStack.top().getStringValue();
   }
 
 }

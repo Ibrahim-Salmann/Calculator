@@ -35,4 +35,12 @@ class TestStrStack {
         "test that entry pushed into the stack has been poped out of the stack.");
   }
 
+  @Test
+  // Test 4; Created the top() method
+  public void testTop() {
+    strStack.push("multiplication");
+    strStack.push("division");
+    assertEquals(strStack.top(), "division", "Returns the most recent  entry of the stack.");
+  }
+
 }
