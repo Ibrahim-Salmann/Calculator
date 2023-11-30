@@ -32,6 +32,10 @@ public class OpStack {
     return opStack.top().getSymbolValue();
   }
 
+  public Integer size() {
+    return opStack.size();
+  }
+
 
 }
 

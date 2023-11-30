@@ -44,6 +44,14 @@ class TestOpStack {
         "Returns the most recent  entry of the stack.");
   }
   
+  @Test
+  //Test 5; 
+  public void testSize() {
+    opStack.push(Symbol.DIVIDE);
+    opStack.push(Symbol.TIME);
+    assertEquals(opStack.size(), 2, "Returns the size 2 after pushing two entries");
+  }
+  
   
 
 }
