@@ -1,6 +1,7 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.EmptyStackException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +54,7 @@ class TestOpStack {
   }
 
   @Test
-  // Test 6;
+  // Test 6; Success
   public void testNotEmpty() {
     opStack.push(Symbol.PLUS);
     assertEquals(opStack.stackisEmpty(), false,
@@ -61,11 +62,20 @@ class TestOpStack {
   }
 
   @Test
-  // Test 7;
+  // Test 7; Success
   public void pushThenPop() throws BadTypeException {
     opStack.push(Symbol.DIVIDE);
-    assertEquals(opStack.pop(Symbol.DIVIDE), Symbol.DIVIDE, "Should return the last entry in stack.");
+    assertEquals(opStack.pop(Symbol.DIVIDE), Symbol.DIVIDE,
+        "Should return the last entry in stack.");
   }
+
+  @Test
+  // Test 8;
+  public void testEmptyStackException() {
+    assertThrows(EmptyStackException.class, () -> opStack.pop(null),
+        "Popping an empty stack should throw an exception.");
+  }
+
 
 
 }
