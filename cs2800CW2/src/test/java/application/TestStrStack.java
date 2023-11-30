@@ -26,4 +26,13 @@ class TestStrStack {
     assertEquals(strStack.isEmpty(), false, "Checks if the Stack is empty, which its not.");
   }
 
+  @Test
+  // Test 3; Created the pop() method
+  public void testPop() {
+    strStack.push("addition");
+    strStack.pop("addiction");
+    assertEquals(strStack.isEmpty(), true,
+        "test that entry pushed into the stack has been poped out of the stack.");
+  }
+
 }

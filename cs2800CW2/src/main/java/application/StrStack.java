@@ -1,5 +1,7 @@
 package application;
 
+import java.util.EmptyStackException;
+
 public class StrStack {
   private Stack strStack;
 
@@ -16,6 +18,13 @@ public class StrStack {
 
   }
 
-
+  public String pop(String string) {
+    if (strStack.size() == 0) {
+      throw new EmptyStackException();
+    }
+    return strStack.pop().getStringValue();
+  }
 
 }
+
+
