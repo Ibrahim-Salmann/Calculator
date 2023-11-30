@@ -19,4 +19,11 @@ class TestOpStack {
     assertEquals(opStack.stackisEmpty(), true, "Checks if the initial stack created is empty");
   }
 
+  @Test
+  // Test 2;
+  public void testPush() {
+    opStack.push(Symbol.PLUS);
+    assertEquals(opStack.stackisEmpty(), false, "Checks if the Stack is empty, which its not.");
+  }
+
 }
