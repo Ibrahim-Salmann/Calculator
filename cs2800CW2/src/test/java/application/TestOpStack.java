@@ -60,4 +60,12 @@ class TestOpStack {
         "Tests the stack to see if it is empty. Should now return false.");
   }
 
+  @Test
+  // Test 7;
+  public void pushThenPop() throws BadTypeException {
+    opStack.push(Symbol.DIVIDE);
+    assertEquals(opStack.pop(Symbol.DIVIDE), Symbol.DIVIDE, "Should return the last entry in stack.");
+  }
+
+
 }
