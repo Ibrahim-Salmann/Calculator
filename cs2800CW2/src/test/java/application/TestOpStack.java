@@ -20,10 +20,19 @@ class TestOpStack {
   }
 
   @Test
-  // Test 2;
+  // Test 2; Created push() method
   public void testPush() {
     opStack.push(Symbol.PLUS);
     assertEquals(opStack.stackisEmpty(), false, "Checks if the Stack is empty, which its not.");
   }
 
+  @Test
+  //Test 3; Created the pop() method
+  public void testPop() {
+    opStack.push(Symbol.MINUS);
+    opStack.pop(Symbol.MINUS);
+    assertEquals(opStack.stackisEmpty(), true, "test that entry pushed into the stack has been poped out of the stack.");    
+  }
+  
+  
 }

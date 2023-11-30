@@ -17,6 +17,15 @@ public class OpStack {
     opStack.push(new Entry(symbol));
 
   }
+
+  public Symbol pop(Symbol minus) throws BadTypeException {
+    if (opStack.size() == 0) {
+      throw new EmptyStackException();
+    }
+    return opStack.pop().getSymbolValue();
+  }
+
+
 }
 
 
