@@ -27,12 +27,23 @@ class TestOpStack {
   }
 
   @Test
-  //Test 3; Created the pop() method
+  // Test 3; Created the pop() method
   public void testPop() {
     opStack.push(Symbol.MINUS);
     opStack.pop(Symbol.MINUS);
-    assertEquals(opStack.stackisEmpty(), true, "test that entry pushed into the stack has been poped out of the stack.");    
+    assertEquals(opStack.stackisEmpty(), true,
+        "test that entry pushed into the stack has been poped out of the stack.");
+  }
+
+  @Test
+  // Test 4; Created the top() method
+  public void testTop() {
+    opStack.push(Symbol.LEFT_BRACKET);
+    opStack.push(Symbol.RIGHT_BRACKET);
+    assertEquals(opStack.top(), Symbol.RIGHT_BRACKET,
+        "Returns the most recent  entry of the stack.");
   }
   
   
+
 }
