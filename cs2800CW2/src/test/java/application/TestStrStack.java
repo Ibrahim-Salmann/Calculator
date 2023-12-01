@@ -1,6 +1,7 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.EmptyStackException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,6 +58,13 @@ class TestStrStack {
     strStack.push("delete");
     assertEquals(strStack.isEmpty(), false,
         "Tests the stack to see if it is empty. Should now return false.");
+  }
+
+  @Test
+  // Test 7; Success
+  public void testEmptyStackException() {
+    assertThrows(EmptyStackException.class, () -> strStack.pop(null),
+        "Popping an empty stack should throw an exception.");
   }
 
 
