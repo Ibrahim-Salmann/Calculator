@@ -44,11 +44,19 @@ class TestStrStack {
   }
 
   @Test
-  // Test 5;
+  // Test 5; Created the size() method
   public void testSize() {
     strStack.push("plus");
     strStack.push("minus");
     assertEquals(strStack.size(), 2, "Returns the size 2 after pushing two entries");
+  }
+
+  @Test
+  // Test 6; Success
+  public void testNotEmpty() {
+    strStack.push("delete");
+    assertEquals(strStack.isEmpty(), false,
+        "Tests the stack to see if it is empty. Should now return false.");
   }
 
 
