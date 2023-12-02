@@ -25,12 +25,21 @@ class TestRevPolishCalc {
   }
 
   @Test
-  // Test 2;
+  // Test 2; Success
   void testAddiction() throws BadTypeException, InvalidExpressionException {
     assertEquals(RPC.evaluate("9 9 +"), 18f);
     assertEquals(RPC.evaluate("15 28 +"), 43f);
     assertEquals(RPC.evaluate("12 16 + 5 + 14 + 1"), 47f);
     assertEquals(RPC.evaluate("70 100 + 66 + 10 + 12 + 55 +"), 313f);
+  }
+  
+  @Test
+  //Test 3; 
+  void testSubtraction() throws BadTypeException, InvalidExpressionException{
+    assertEquals(RPC.evaluate("9 9 -"), 0f);
+    assertEquals(RPC.evaluate("28 15 -"), 13f);
+    assertEquals(RPC.evaluate("26 12 - 5 - 2 - 1"), 7f);
+    assertEquals(RPC.evaluate("200 70 - 22 - 5 - 6 - 45 -"), 52f);
   }
 
 }
