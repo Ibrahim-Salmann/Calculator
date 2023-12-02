@@ -60,4 +60,13 @@ class TestRevPolishCalc {
     assertEquals(RPC.evaluate("1200000 120 /"), 10000f);
   }
 
+  @Test
+  // Test 6; Success
+  void testDecimal() throws BadTypeException, InvalidExpressionException {
+    assertEquals(RPC.evaluate("12.5 13.6 +"), 26.1f);
+    assertEquals(RPC.evaluate("66.66 3.45 -"), 63.210003f);
+    assertEquals(RPC.evaluate("37.8 4.2 /"), 9f);
+    assertEquals(RPC.evaluate("5.5 2.0 *"), 11f);
+  }
+
 }
