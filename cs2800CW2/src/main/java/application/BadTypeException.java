@@ -7,6 +7,7 @@ package application;
  */
 public class BadTypeException extends RuntimeException {
 
+
   /**
    * Constructs a new BadTypeException with the specified detail message.
    *
