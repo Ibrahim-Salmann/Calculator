@@ -68,5 +68,14 @@ class TestRevPolishCalc {
     assertEquals(RPC.evaluate("37.8 4.2 /"), 9f);
     assertEquals(RPC.evaluate("5.5 2.0 *"), 11f);
   }
+  
+  @Test
+  //Test 7;
+  void testNegative() throws BadTypeException, InvalidExpressionException{
+    assertEquals(RPC.evaluate("-12 89 +"), 77f);
+    assertEquals(RPC.evaluate("-66 -345 +"), -411f);
+    assertEquals(RPC.evaluate("-2 -2 *"), 4f);
+    assertEquals(RPC.evaluate("-9999 3 /"), -3333.0f);
+  }
 
 }
