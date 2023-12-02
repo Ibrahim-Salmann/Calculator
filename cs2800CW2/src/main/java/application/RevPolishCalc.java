@@ -2,15 +2,46 @@ package application;
 
 import java.util.Arrays;
 
+/**
+ * The RevPolishCalc class represents a calculator that evaluates mathematical expressions in
+ * Reverse Polish Notation (RPN).
+ *
+ * Reverse Polish Notation is a mathematical notation in which every operator follows all of its
+ * operands. It is also known as postfix notation.
+ *
+ * The calculator supports basic arithmetic operations such as addition, subtraction,
+ * multiplication, and division. It utilizes a NumStack to store numerical values during the
+ * evaluation process.
+ * 
+ * @author Ibraheem
+ */
 public class RevPolishCalc {
 
+  /**
+   * The NumStack used to store numerical values during the evaluation.
+   */
   private NumStack RPC;
+  /**
+   * The result of the evaluation.
+   */
   private float answere;
 
+  /**
+   * Constructs a new RevPolishCalc object with an initialized NumStack.
+   */
   public RevPolishCalc() {
     RPC = new NumStack();
   }
 
+  /**
+   * Evaluates a mathematical expression in Reverse Polish Notation (RPN).
+   *
+   * @param str The RPN expression as a space-separated string.
+   * @return The result of the evaluation.
+   * @throws BadTypeException If an unsupported data type is encountered during evaluation.
+   * @throws InvalidExpressionException If the expression is empty, has invalid format, or is too
+   *         short to evaluate.
+   */
   public float evaluate(String str) throws BadTypeException, InvalidExpressionException {
 
     String[] elements = str.split(" ");
