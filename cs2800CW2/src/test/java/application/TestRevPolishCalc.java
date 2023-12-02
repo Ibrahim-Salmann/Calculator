@@ -32,23 +32,32 @@ class TestRevPolishCalc {
     assertEquals(RPC.evaluate("12 16 + 5 + 14 + 1"), 47f);
     assertEquals(RPC.evaluate("70 100 + 66 + 10 + 12 + 55 +"), 313f);
   }
-  
+
   @Test
-  //Test 3; Success
-  void testSubtraction() throws BadTypeException, InvalidExpressionException{
+  // Test 3; Success
+  void testSubtraction() throws BadTypeException, InvalidExpressionException {
     assertEquals(RPC.evaluate("9 9 -"), 0f);
     assertEquals(RPC.evaluate("28 15 -"), 13f);
     assertEquals(RPC.evaluate("26 12 - 5 - 2 - 1"), 7f);
     assertEquals(RPC.evaluate("200 70 - 22 - 5 - 6 - 45 -"), 52f);
   }
-  
+
   @Test
-  //Test 4;
-  void testMultiplication()throws BadTypeException, InvalidExpressionException{
+  // Test 4; Success
+  void testMultiplication() throws BadTypeException, InvalidExpressionException {
     assertEquals(RPC.evaluate("9 9 *"), 81f);
     assertEquals(RPC.evaluate("12 10 *"), 120f);
     assertEquals(RPC.evaluate("3 3 * 3 * 3 *"), 81f);
     assertEquals(RPC.evaluate("3578 6345 *"), 22702410f);
+  }
+
+  @Test
+  // Test 5; Success
+  void testDivision() throws BadTypeException, InvalidExpressionException {
+    assertEquals(RPC.evaluate("9 9 /"), 1f);
+    assertEquals(RPC.evaluate("160 2 /"), 80f);
+    assertEquals(RPC.evaluate("300 3 / 5 / 2 /"), 10f);
+    assertEquals(RPC.evaluate("1200000 120 /"), 10000f);
   }
 
 }
