@@ -47,6 +47,13 @@ class TestStandardCalc {
     assertEquals(stc.evaluate("2 * 2 * 2 * 2"), 16f);
   }
   
+  @Test
+  //Test 5; Success
+  void testDivision()throws BadTypeException, InvalidExpressionException{
+    assertEquals(stc.evaluate("2 / 2"), 1f);
+    assertEquals(stc.evaluate("100 / 20"), 5f);
+    assertEquals(stc.evaluate("49 / 7"), 7f);
+  }
   
   
 
