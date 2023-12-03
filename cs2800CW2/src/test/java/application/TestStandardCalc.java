@@ -55,6 +55,13 @@ class TestStandardCalc {
     assertEquals(stc.evaluate("49 / 7"), 7f);
   }
   
+  @Test
+  //Test 6
+  void testDecimal()throws BadTypeException, InvalidExpressionException{
+    assertEquals(stc.evaluate("1.3 + 1.7"), 3f);
+    assertEquals(stc.evaluate("8.9 * 6.9"), 61.41f);
+  }
+  
   
 
 }
