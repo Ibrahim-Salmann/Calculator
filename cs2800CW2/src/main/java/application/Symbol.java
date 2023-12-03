@@ -14,7 +14,7 @@ public enum Symbol {
   INVALID("Invalid");// Invalid Type
 
   private String symbolName;
-  private int precedence;
+  private int precedence;//Added
 
   /**
    * Constructs a Symbol with its associated string representation.
@@ -25,12 +25,12 @@ public enum Symbol {
     this.symbolName = symbolName;
   }
 
-  Symbol(String symbolName, int precedence) {
+  Symbol(String symbolName, int precedence) {//Added
     this.symbolName = symbolName;
     this.precedence = precedence;
   }
 
-  public int getPrecedence() {
+  public int getPrecedence() {//Added
     return this.precedence;
   }
 

@@ -48,7 +48,7 @@ public class OpStack {
    * @throws BadTypeException If the popped element is not of the expected type.
    * @throws EmptyStackException If the stack is empty.
    */
-  public Symbol pop() throws BadTypeException {
+  public Symbol pop() throws BadTypeException {//Changed made; removed the method parameter Symbol symbol
     if (opStack.size() == 0) {
       throw new EmptyStackException();
     }
