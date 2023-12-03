@@ -39,6 +39,14 @@ class TestStandardCalc {
     assertEquals(stc.evaluate("42 - 49"), -7f);
   }
   
+  @Test
+  //Test 4; Success
+  void testMultiplication()throws BadTypeException, InvalidExpressionException{
+    assertEquals(stc.evaluate("12 * 2"), 24f);
+    assertEquals(stc.evaluate("-8 * -8"), 64f);
+    assertEquals(stc.evaluate("2 * 2 * 2 * 2"), 16f);
+  }
+  
   
   
 
