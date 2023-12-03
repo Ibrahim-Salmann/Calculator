@@ -34,10 +34,10 @@ public class OpStack {
   /**
    * Pushes a symbol onto the top of the OpStack.
    *
-   * @param symbol The symbol to be pushed onto the stack.
+   * @param entry The symbol to be pushed onto the stack.
    */
-  public void push(Symbol symbol) {
-    opStack.push(new Entry(symbol));
+  public void push(Symbol entry) {
+    opStack.push(new Entry(entry));
 
   }
 
@@ -48,7 +48,7 @@ public class OpStack {
    * @throws BadTypeException If the popped element is not of the expected type.
    * @throws EmptyStackException If the stack is empty.
    */
-  public Symbol pop(Symbol symbol) throws BadTypeException {
+  public Symbol pop() throws BadTypeException {
     if (opStack.size() == 0) {
       throw new EmptyStackException();
     }

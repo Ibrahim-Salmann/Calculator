@@ -31,7 +31,7 @@ class TestOpStack {
   // Test 3; Created the pop() method
   public void testPop() {
     opStack.push(Symbol.MINUS);
-    opStack.pop(Symbol.MINUS);
+    opStack.pop();
     assertEquals(opStack.stackisEmpty(), true,
         "test that entry pushed into the stack has been poped out of the stack.");
   }
@@ -65,14 +65,14 @@ class TestOpStack {
   // Test 7; Success
   public void pushThenPop() throws BadTypeException {
     opStack.push(Symbol.DIVIDE);
-    assertEquals(opStack.pop(Symbol.DIVIDE), Symbol.DIVIDE,
+    assertEquals(opStack.pop(), Symbol.DIVIDE,
         "Should return the last entry in stack.");
   }
 
   @Test
   // Test 8; Success
   public void testEmptyStackException() {
-    assertThrows(EmptyStackException.class, () -> opStack.pop(null),
+    assertThrows(EmptyStackException.class, () -> opStack.pop(),
         "Popping an empty stack should throw an exception.");
   }
 
