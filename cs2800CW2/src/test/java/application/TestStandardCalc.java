@@ -27,6 +27,16 @@ class TestStandardCalc {
   //Test 2; error; removed a space in String postfix line 43 in StandardCalc.java
   void testAddition() throws BadTypeException, InvalidExpressionException {
     assertEquals(stc.evaluate("2 + 2"), 4f);
+    assertEquals(stc.evaluate("15 + 15"), 30f);
+    assertEquals(stc.evaluate("2 + 2 + 2 + 2 + 2"), 10f);
+  }
+  
+  @Test
+  //Test 3; Success
+  void testSubraction() throws BadTypeException, InvalidExpressionException {
+    assertEquals(stc.evaluate("2 - 2"), 0f);
+    assertEquals(stc.evaluate("100 - 40"), 60f);
+    assertEquals(stc.evaluate("42 - 49"), -7f);
   }
   
   
