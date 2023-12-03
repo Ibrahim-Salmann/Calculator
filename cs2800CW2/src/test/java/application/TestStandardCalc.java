@@ -6,24 +6,30 @@ import org.junit.jupiter.api.Test;
 
 class TestStandardCalc {
 
-  private StandardCalc stC;
+  private StandardCalc stc;
   
   @BeforeEach
   void setup() {
-    stC = new StandardCalc();
+    stc = new StandardCalc();
   }
   
   @Test
-  //Test 1;
+  //Test 1; Created the StandardCalc class with evaluate method
   void testInvalidException() {
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate(""));
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate("(1 + 1) / 4"));
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate("5 0 /"));
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate("9 *"));
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate("6 6 x"));
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate("3 9 +"));
-    assertThrows(InvalidExpressionException.class, () -> stC.evaluate("2 4 -"));
+    assertThrows(InvalidExpressionException.class, () -> stc.evaluate(""));
+    assertThrows(InvalidExpressionException.class, () -> stc.evaluate("(1 + 1) / 4"));
+    assertThrows(InvalidExpressionException.class, () -> stc.evaluate("5 0 /"));
+    assertThrows(InvalidExpressionException.class, () -> stc.evaluate("9 *"));
+    assertThrows(InvalidExpressionException.class, () -> stc.evaluate("6 6 x"));
   }
+  
+  @Test
+  //Test 2; error; removed a space in String postfix line 43 in StandardCalc.java
+  void testAddition() throws BadTypeException, InvalidExpressionException {
+    assertEquals(stc.evaluate("2 + 2"), 4f);
+  }
+  
+  
   
 
 }

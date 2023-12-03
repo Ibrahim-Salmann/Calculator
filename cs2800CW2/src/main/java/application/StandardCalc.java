@@ -3,6 +3,10 @@ package application;
 import java.util.Arrays;
 
 /**
+ * The StandardCalc class represents a standard calculator that evaluates mathematical expressions.
+ * It uses a Reverse Polish Calculator (RPC) for computation and an Operator Stack (OpStack) for
+ * managing operators during the evaluation process.
+ * 
  * @author Ibraheem
  */
 public class StandardCalc {
@@ -10,6 +14,10 @@ public class StandardCalc {
   private OpStack ops;
   private RevPolishCalc rpc;
 
+  /**
+   * Constructs a StandardCalc with initialized Operator Stack (OpStack) and Reverse Polish
+   * Calculator (RPC).
+   */
   public StandardCalc() {
     ops = new OpStack();
     rpc = new RevPolishCalc();
@@ -21,15 +29,18 @@ public class StandardCalc {
 
 
   /**
-   * @param str
-   * @return
-   * @throws BadTypeException
-   * @throws InvalidExpressionException
+   * Evaluates a mathematical expression in infix notation and returns the result.
+   * 
+   * @param str The infix mathematical expression to be evaluated.
+   * @return The result of the evaluation.
+   * @throws BadTypeException If an unexpected data type is encountered during evaluation.
+   * @throws InvalidExpressionException If the expression is invalid or contains unsupported
+   *         symbols.
    */
   public float evaluate(String str) throws BadTypeException, InvalidExpressionException {
 
     String[] elements = str.split(" ");
-    String postfix = " ";
+    String postfix = "";
 
     for (String element : elements) {
       try {
@@ -54,7 +65,7 @@ public class StandardCalc {
           } else {
             ops.push(symbol);
           }
-        }else{
+        } else {
           throw new InvalidExpressionException("Expression contains invalid symbol.");
         }
 
@@ -71,6 +82,12 @@ public class StandardCalc {
   }
 
 
+  /**
+   * Converts a string representation of an operator to the corresponding Symbol enum.
+   * 
+   * @param operant The string representation of the operator.
+   * @return The Symbol enum corresponding to the operator.
+   */
   private Symbol toSymbol(String operant) {
     switch (operant) {
       case "/":

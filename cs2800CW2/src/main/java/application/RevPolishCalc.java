@@ -20,7 +20,7 @@ public class RevPolishCalc {
   /**
    * The NumStack used to store numerical values during the evaluation.
    */
-  private NumStack RPC;
+  private NumStack rpc;
   /**
    * The result of the evaluation.
    */
@@ -30,7 +30,7 @@ public class RevPolishCalc {
    * Constructs a new RevPolishCalc object with an initialized NumStack.
    */
   public RevPolishCalc() {
-    RPC = new NumStack();
+    rpc = new NumStack();
   }
 
   /**
@@ -57,8 +57,8 @@ public class RevPolishCalc {
 
     for (String element : elements) {
       if (Arrays.asList(operants).contains(element)) {
-        float right = RPC.pop();
-        float left = RPC.pop();
+        float right = rpc.pop();
+        float left = rpc.pop();
 
         switch (element) {
           case "/":
@@ -78,10 +78,10 @@ public class RevPolishCalc {
             break;
           default:
         }
-        RPC.push(answere);
+        rpc.push(answere);
       } else {
         try {
-          RPC.push(Float.parseFloat(element));
+          rpc.push(Float.parseFloat(element));
         } catch (NumberFormatException e) {
           throw new InvalidExpressionException("Not a number!");
         }
