@@ -1,6 +1,10 @@
 package application;
 
 import java.util.Arrays;
+import java.util.EmptyStackException;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The StandardCalc class represents a standard calculator that evaluates mathematical expressions.
@@ -14,98 +18,121 @@ public class StandardCalc {
   private OpStack ops;
   private RevPolishCalc rpc;
 
-  /**
-   * Constructs a StandardCalc with initialized Operator Stack (OpStack) and Reverse Polish
-   * Calculator (RPC).
-   */
-  public StandardCalc() {
-    ops = new OpStack();
-    rpc = new RevPolishCalc();
-  }
+  public float evaluate(String str)
+      throws BadTypeException, InvalidExpressionException, EmptyStackException {
 
-  String[] operators = {"/", "*", "+", "-", "(", ")"};
-  Symbol[] symbols = {Symbol.DIVIDE, Symbol.TIME, Symbol.MINUS, Symbol.PLUS, Symbol.LEFT_BRACKET,
-      Symbol.RIGHT_BRACKET};
+    this.rpc = new RevPolishCalc();
+
+    List<Entry> entries = new ArrayList<Entry>();
+
+    this.ops = new OpStack();
 
 
-  /**
-   * Evaluates a mathematical expression in infix notation and returns the result.
-   * 
-   * @param str The infix mathematical expression to be evaluated.
-   * @return The result of the evaluation.
-   * @throws BadTypeException If an unexpected data type is encountered during evaluation.
-   * @throws InvalidExpressionException If the expression is invalid or contains unsupported
-   *         symbols.
-   */
-  public float evaluate(String str) throws BadTypeException, InvalidExpressionException {
+    HashMap<String, Integer> stringMap = new HashMap<String, Integer>();
+    HashMap<Symbol, String> symbolMap = new HashMap<Symbol, String>();
+    HashMap<String, Symbol> maps = new HashMap<String, Symbol>();
 
-    String[] elements = str.split(" ");
+
+    stringMap.put("/", 0);
+    stringMap.put("*", 0);
+    stringMap.put("+", 1);
+    stringMap.put("-", 1);
+    stringMap.put("(", -1);
+
+    symbolMap.put(Symbol.DIVIDE, "/");
+    symbolMap.put(Symbol.TIME, "*");
+    symbolMap.put(Symbol.PLUS, "+");
+    symbolMap.put(Symbol.MINUS, "-");
+    symbolMap.put(Symbol.LEFT_BRACKET, "(");
+
+    maps.put("/", Symbol.DIVIDE);
+    maps.put("*", Symbol.TIME);
+    maps.put("+", Symbol.PLUS);
+    maps.put("-", Symbol.MINUS);
+    maps.put("(", Symbol.LEFT_BRACKET);
+
+    String[] operants = {"/", "*", "+", "-"};
+
+
     String postfix = "";
+    String[] elements = str.split(" ");
 
-    for (String element : elements) {
+
+
+    for (int i = 0; i < elements.length; i++) {
+      String element = elements[i];// changed the for statement
+
       try {
-        postfix += (Float.parseFloat(element)) + " ";
+
+        Float.parseFloat(element);
+        postfix += element;
+        postfix += " ";
+
       } catch (NumberFormatException e) {
-        if (Arrays.asList(operators).contains(element)) {
-          Symbol symbol = toSymbol(element);
-          if (ops.stackisEmpty()) {
-            ops.push(symbol);
-          } else if (symbol == Symbol.LEFT_BRACKET) {
-            ops.push(symbol);
-          } else if (symbol == Symbol.RIGHT_BRACKET) {
-            while (ops.top().getPrecedence() > 0) {
-              postfix += ops.pop() + " ";
-            }
-            ops.pop();
-          } else if (!ops.stackisEmpty() && symbol.getPrecedence() <= ops.top().getPrecedence()) {
-            while (!ops.stackisEmpty() && symbol.getPrecedence() <= ops.top().getPrecedence()) {
-              postfix += ops.pop() + " ";
-            }
-            ops.push(symbol);
-          } else {
-            ops.push(symbol);
+
+        if (Arrays.asList(operants).contains(element)) {
+
+          while (!ops.stackisEmpty()
+              && stringMap.get(symbolMap.get(ops.top())) > stringMap.get(element)) {
+
+
+            postfix += symbolMap.get(ops.pop());
+            postfix += " ";
           }
-        } else {
-          throw new InvalidExpressionException("Expression contains invalid symbol.");
+
+
+          ops.push(maps.get(element));
+
+        } else if (element.equals("(")) {// Changed from postfix to element
+
+          ops.push(maps.get(element));
+
+        } else if (element.equals(")")) {// Changed from postfix to element
+
+          while (!ops.stackisEmpty() && !symbolMap.get(ops.top()).equals("(")) {
+
+            postfix += symbolMap.get(ops.pop());
+            postfix += " ";
+          }
+          if (!ops.stackisEmpty()) {
+            ops.pop(); // Pop the "(" from the stack
+          } else {
+            throw new InvalidExpressionException("Mismatched parentheses");
+          }
+
+          // ops.pop();
+        } else if (i > 0 && isNumeric(elements[i - 1])) {// added
+          throw new InvalidExpressionException("Consecutive numeric values");// added
+        } else if (i > 0 && Arrays.asList(operants).contains(elements[i - 1])) {// added
+          throw new InvalidExpressionException("Consecutive operators without operands");// added
         }
-
       }
+    }
 
+    while (!ops.stackisEmpty()) {
+
+      postfix += symbolMap.get(ops.pop());
+      postfix += " ";
     }
-    if (!ops.stackisEmpty()) {
-      while (ops.size() > 1) {
-        postfix += ops.pop() + " ";
-      }
-      postfix += ops.pop();
+
+    postfix = postfix.trim();// changed from postfix.substring(0, postfix.length()); to
+                             // postfix.trim();
+    float answere = rpc.evaluate(postfix);
+
+
+    return answere;
+
+  }
+
+  private boolean isNumeric(String str) {
+    try {
+      Float.parseFloat(str);
+      return true;
+    } catch (NumberFormatException e) {
+      return false;
     }
-    return rpc.evaluate(postfix);
   }
 
 
-  /**
-   * Converts a string representation of an operator to the corresponding Symbol enum.
-   * 
-   * @param operant The string representation of the operator.
-   * @return The Symbol enum corresponding to the operator.
-   */
-  private Symbol toSymbol(String operant) {
-    switch (operant) {
-      case "/":
-        return Symbol.DIVIDE;
-      case "*":
-        return Symbol.TIME;
-      case "-":
-        return Symbol.MINUS;
-      case "+":
-        return Symbol.PLUS;
-      case "(":
-        return Symbol.LEFT_BRACKET;
-      case ")":
-        return Symbol.RIGHT_BRACKET;
-      default:
-        return Symbol.INVALID;
-    }
-
-  }
 
 }
