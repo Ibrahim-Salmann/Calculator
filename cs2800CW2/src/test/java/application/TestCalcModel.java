@@ -16,7 +16,7 @@ class TestCalcModel {
 
 
   @Test
-  // Test 1; fail;
+  // Test 1; fail; Completed the CalcModel.java code
   void testEvaluateStandard() throws InvalidExpressionException {
     float answere = cm.evaluate("7 + 7", true);
     assertEquals(14f, answere, 0.001f);
@@ -26,11 +26,30 @@ class TestCalcModel {
 
     answere = cm.evaluate("( 4 + 3 ) * ( 5 - 2 )", true);
     assertEquals(21f, answere, 0.001f);
-    
+
     answere = cm.evaluate("( 12 * 2 ) - ( 144 / 12 )", true);
     assertEquals(12f, answere, 0.001f);
-    
+
     answere = cm.evaluate(" ( 3 * 5 ) - 2", true);
+    assertEquals(13f, answere, 0.001f);
+  }
+
+  @Test
+  // Test 2;
+  void testEvaluateReversePolish() throws InvalidExpressionException {
+    float answere = cm.evaluate("7 7 +", false);
+    assertEquals(14f, answere, 0.001f);
+
+    answere = cm.evaluate("6.8 1.2 *", false);
+    assertEquals(8.16f, answere, 0.001f);
+
+    answere = cm.evaluate("4 3 + 5 2 - *", false);
+    assertEquals(21f, answere, 0.001f);
+
+    answere = cm.evaluate("12 2 * 144 12 / -", false);
+    assertEquals(12f, answere, 0.001f);
+
+    answere = cm.evaluate("3 5 * 2 -", false);
     assertEquals(13f, answere, 0.001f);
   }
 

@@ -2,6 +2,30 @@ package application;
 
 /**
  * Evaluates an expression - the evaluation can be Standard (infix) or reverse polish.
+ * 
+ * <p>
+ * The CalcModel class provides a versatile expression evaluation capability, supporting both
+ * Standard (infix) and Reverse Polish notations.
+ * </p>
+ * 
+ * <p>
+ * This class implements the Calculator interface and encapsulates instances of StandardCalc and
+ * RevPolishCalc to enable evaluation of mathematical expressions based on the user's chosen
+ * notation.
+ * </p>
+ * 
+ * <p>
+ * Usage example:
+ * </p>
+ * 
+ * <pre>
+ * CalcModel calcModel = new CalcModel();
+ * float result = calcModel.evaluate("(2 + 3) * 4", true); // Standard notation
+ * float resultRPN = calcModel.evaluate("2 3 + 4 *", false); // Reverse Polish notation
+ * </pre>
+ * 
+ * 
+ * @author Ibraheem
  */
 public class CalcModel implements Calculator {
 
@@ -10,6 +34,9 @@ public class CalcModel implements Calculator {
   private RevPolishCalc rpc;
 
 
+  /**
+   * Constructs a new CalcModel instance with initialized StandardCalc and RevPolishCalc objects.
+   */
   public CalcModel() {
     stc = new StandardCalc();
     rpc = new RevPolishCalc();
@@ -17,6 +44,14 @@ public class CalcModel implements Calculator {
 
 
 
+  /**
+   * Evaluates a mathematical expression based on the specified notation.
+   * 
+   * @param expression The mathematical expression to be evaluated.
+   * @param infix Determines whether the expression is in Standard (infix) notation.
+   * @return The result of the evaluation.
+   * @throws InvalidExpressionException If the expression is invalid or cannot be evaluated.
+   */
   @Override
   public float evaluate(String expression, Boolean infix) throws InvalidExpressionException {
     if (infix) {
