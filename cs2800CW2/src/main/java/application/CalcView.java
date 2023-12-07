@@ -74,6 +74,12 @@ public class CalcView extends Application implements ViewInterface {
     primaryStage.setTitle("MVC/Observer/fxml");
     primaryStage.show();
   }
+  
+  @Override
+  public OpType retrieveOpType() {
+    
+    return this.retrieveOpType();
+  }
 
   // DO NOT CHANGE ANYTHING BELOW THIS COMMENT
   /////////////////////////////////////////////////////////////////////////////////
@@ -105,5 +111,6 @@ public class CalcView extends Application implements ViewInterface {
   }
   // End of special block
   /////////////////////////////////////////////////////////////////////////////////
+
 
 }

@@ -18,6 +18,11 @@ public class CalcController {
       // Retrieve the expression from the view
       String expression = myView.getExpression();
 
+      // Ensure that the expression is not empty before attempting evaluation
+      if (expression.isEmpty()) {
+        throw new InvalidExpressionException("Expression is empty");
+      }
+
       // Evaluate the expression using the model
       float result = myModel.evaluate(expression, true); // Assuming infix notation
 
@@ -35,10 +40,11 @@ public class CalcController {
    * @param type The calculation type to set in the model.
    */
   private void handleTypeChange(OpType type) {
-    // Update the calculation type in the model
-    // Assuming OpType is an enumeration representing infix or reverse polish
-    // Modify the CalcModel and OpType classes accordingly
-    // myModel.setCalculationType(type);
+    // Assuming OpType has a method to get the boolean value
+    boolean isInfix = type.getOpType();
+
+    // Set the calculation type in the model
+    myModel.setInfixCalculation(isInfix);
   }
 
   /**

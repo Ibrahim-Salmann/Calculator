@@ -18,6 +18,10 @@ class TestCalcModel {
   @Test
   // Test 1; fail; Completed the CalcModel.java code
   void testEvaluateStandard() throws InvalidExpressionException {
+
+    // Standard Calculator notation set on
+    cm.setInfixCalculation(true);
+
     float answere = cm.evaluate("7 + 7", true);
     assertEquals(14f, answere, 0.001f);
 
@@ -37,6 +41,10 @@ class TestCalcModel {
   @Test
   // Test 2;
   void testEvaluateReversePolish() throws InvalidExpressionException {
+
+    // Reverse Polish Calculation set on
+    cm.setInfixCalculation(false);
+
     float answere = cm.evaluate("7 7 +", false);
     assertEquals(14f, answere, 0.001f);
 
@@ -51,6 +59,13 @@ class TestCalcModel {
 
     answere = cm.evaluate("3 5 * 2 -", false);
     assertEquals(13f, answere, 0.001f);
+  }
+
+
+  @Test
+  void testMismatchedExpressionFormat() {
+    assertThrows(InvalidExpressionException.class, () -> cm.evaluate("2 3 + 4 *", true));
+    assertThrows(InvalidExpressionException.class, () -> cm.evaluate("(2 + 3) * 4", false));
   }
 
 }

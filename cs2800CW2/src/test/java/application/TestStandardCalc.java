@@ -24,7 +24,7 @@ class TestStandardCalc {
   }
 
   @Test
-  // Test 2; error; removed a space in String postfix 
+  // Test 2; error; removed a space in String postfix
   void testAddition() throws BadTypeException, InvalidExpressionException {
     assertEquals(stc.evaluate("2 + 2"), 4f, 0.001f);
     assertEquals(stc.evaluate("15 + 15"), 30f, 0.001f);
@@ -63,12 +63,19 @@ class TestStandardCalc {
   }
 
   @Test
-  // Test 7; fail&errors; changed the entire algorithm 
+  // Test 7; fail&errors; changed the entire algorithm
   void testComplex() throws BadTypeException, InvalidExpressionException {
     assertEquals(stc.evaluate("3 + ( 4 * 5 ) / 2"), 11.5f);
     assertEquals(stc.evaluate("( 30 - 70 ) * ( 20 * 20 )"), -16000.0f);
     assertEquals(stc.evaluate("( 4 + 7 ) * ( 4 + 3 )"), 77f);
     assertEquals(stc.evaluate("8 - ( 144 / 12 ) * ( 80 / 8 )"), -40.0f);
+  }
+
+
+  @Test
+  //Test 8;
+  void testInvalidNumericValue() {
+    assertThrows(InvalidExpressionException.class, () -> stc.evaluate("3 + abc"));
   }
 
 

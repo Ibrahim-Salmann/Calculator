@@ -11,6 +11,14 @@ public class AsciiView implements ViewInterface {
   // The current question that the calculator must solve: entered like ?3*(5+4)
   private String question;
 
+  private boolean isInfix;
+
+  private String expression;
+
+  private String answer;
+
+  private Observer calc, type;
+
   // This method will be injected so we can ask the controller to calculate
   Runnable doCalculation = null;
 
@@ -27,12 +35,25 @@ public class AsciiView implements ViewInterface {
       String t = s.next();
       switch (t.toUpperCase().charAt(0)) {
         case 'C': // Ask the controller to calculate
+          if (calc != null) {
+            calc.notify();
+            System.out.println("Result: " + answer);
+          }
           break;
         case '?': // Set current question
+          question = t.substring(1);
+          System.out.println("Question set to: " + question);
           break;
         case 'Q':
           System.out.println("Bye");
           finished = true;
+          finished = true;
+          break;
+        case 'R': // change to a reverse polish calculator
+          if (type != null) {
+            isInfix = !isInfix;
+            type.notify();
+          }
           break;
         default:
           help();
@@ -52,23 +73,33 @@ public class AsciiView implements ViewInterface {
 
   @Override
   public String getExpression() {
-    return "0";
+    return this.expression;
   }
 
   @Override
   public void setAnswer(String answer) {
-    System.out.println("Answer is just around the corner");
+    this.answer = answer;
   }
 
   @Override
-  public void addCalculateObserver(Runnable f) {}
+  public void addCalculateObserver(Runnable f) {
+    calc = (Observer) f;
+  }
 
   @Override
-  public void addTypeObserver(Consumer<OpType> c) {}
+  public void addTypeObserver(Consumer<OpType> c) {
+    type = (Observer) c;
+  }
 
   @Override
   public void startView() {
     menu();
   }
+
+  @Override
+  public OpType retrieveOpType() {
+    return isInfix ? OpType.STANDARD : OpType.REV_POLISH;
+  }
+
 
 }
