@@ -18,6 +18,11 @@ public class CalcController {
       // Retrieve the expression from the view
       String expression = myView.getExpression();
 
+      // Ensure that the expression is not empty before attempting evaluation
+      if (expression.isEmpty()) {
+        throw new InvalidExpressionException("Expression is empty");
+      }
+
       // Evaluate the expression using the model
       float result = myModel.evaluate(expression, true); // Assuming infix notation
 

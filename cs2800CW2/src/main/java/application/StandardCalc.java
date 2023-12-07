@@ -141,13 +141,14 @@ public class StandardCalc {
    * 
    * @param str The string to check.
    * @return {@code true} if the string is numeric, {@code false} otherwise
+   * @throws InvalidExpressionException 
    */
-  private boolean isNumeric(String str) {
+  private boolean isNumeric(String str) throws InvalidExpressionException {
     try {
       Float.parseFloat(str);
       return true;
     } catch (NumberFormatException e) {
-      return false;
+      throw new InvalidExpressionException("Invalid numeric value: " + str);
     }
   }
 

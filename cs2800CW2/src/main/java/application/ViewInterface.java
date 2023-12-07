@@ -46,4 +46,6 @@ public interface ViewInterface {
    * calls this method once it is ready to start calculating.
    */
   public void startView();
+
+  OpType retrieveOpType();
 }

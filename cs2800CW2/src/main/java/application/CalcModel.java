@@ -44,6 +44,32 @@ public class CalcModel implements Calculator {
     rpc = new RevPolishCalc();
   }
 
+
+  /**
+   * Evaluates a mathematical expression in Standard (infix) notation.
+   *
+   * @param expression The mathematical expression to be evaluated.
+   * @return The result of the evaluation.
+   * @throws InvalidExpressionException If the expression is invalid or cannot be evaluated.
+   */
+  private float evaluateStandard(String expression) throws InvalidExpressionException {
+    return stc.evaluate(expression);
+  }
+
+
+  /**
+   * Evaluates a mathematical expression in Reverse Polish Notation (RPN).
+   *
+   * @param expression The mathematical expression in RPN.
+   * @return The result of the evaluation.
+   * @throws InvalidExpressionException If the expression is invalid or cannot be evaluated.
+   */
+  private float evaluateReversePolish(String expression) throws InvalidExpressionException {
+    return rpc.evaluate(expression);
+  }
+
+
+
   /**
    * Set the calculation type (infix or reverse polish).
    * 
@@ -66,12 +92,17 @@ public class CalcModel implements Calculator {
    */
   @Override
   public float evaluate(String expression, Boolean infix) throws InvalidExpressionException {
+    // Validate infix parameter consistency with the actual calculation type
+    if (infix != infixCalculation) {
+      throw new InvalidExpressionException(
+          "Mismatch between expression format and calculation type");
+    }
     if (infixCalculation) {
       // Evaluate using standard (infix) notation
-      return stc.evaluate(expression);
+      return evaluateStandard(expression);
     } else {
       // Evaluate using reverse polish notation
-      return rpc.evaluate(expression);
+      return evaluateReversePolish(expression);
     }
   }
 }

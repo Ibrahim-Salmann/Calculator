@@ -42,7 +42,7 @@ class TestCalcModel {
   // Test 2;
   void testEvaluateReversePolish() throws InvalidExpressionException {
 
-    //Reverse Polish Calculation set on
+    // Reverse Polish Calculation set on
     cm.setInfixCalculation(false);
 
     float answere = cm.evaluate("7 7 +", false);
@@ -59,6 +59,13 @@ class TestCalcModel {
 
     answere = cm.evaluate("3 5 * 2 -", false);
     assertEquals(13f, answere, 0.001f);
+  }
+
+
+  @Test
+  void testMismatchedExpressionFormat() {
+    assertThrows(InvalidExpressionException.class, () -> cm.evaluate("2 3 + 4 *", true));
+    assertThrows(InvalidExpressionException.class, () -> cm.evaluate("(2 + 3) * 4", false));
   }
 
 }
