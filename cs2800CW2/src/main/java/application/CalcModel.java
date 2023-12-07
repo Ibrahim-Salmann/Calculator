@@ -33,6 +33,8 @@ public class CalcModel implements Calculator {
   private StandardCalc stc;
   private RevPolishCalc rpc;
 
+  private boolean infixCalculation;
+
 
   /**
    * Constructs a new CalcModel instance with initialized StandardCalc and RevPolishCalc objects.
@@ -40,6 +42,16 @@ public class CalcModel implements Calculator {
   public CalcModel() {
     stc = new StandardCalc();
     rpc = new RevPolishCalc();
+  }
+
+  /**
+   * Set the calculation type (infix or reverse polish).
+   * 
+   * @param infix Determines whether the expression should be evaluated in Standard (infix)
+   *        notation.
+   */
+  public void setInfixCalculation(boolean infix) {
+    infixCalculation = infix;
   }
 
 
@@ -54,7 +66,7 @@ public class CalcModel implements Calculator {
    */
   @Override
   public float evaluate(String expression, Boolean infix) throws InvalidExpressionException {
-    if (infix) {
+    if (infixCalculation) {
       // Evaluate using standard (infix) notation
       return stc.evaluate(expression);
     } else {
