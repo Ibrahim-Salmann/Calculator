@@ -6,12 +6,16 @@ import org.junit.jupiter.api.Test;
 
 class TestCalcModel {
 
-  private CalcModel cm;
+  private CalcModel cmStandard;
+  private CalcModel cmReversePolish;
 
 
   @BeforeEach
   void setup() {
-    cm = new CalcModel();
+    // Use StandardCalcFactory for infix notation
+    cmStandard = new CalcModel(new StandardCalcFactory());
+    // Use RevPolishCalcFactory for reverse polish notation
+    cmReversePolish = new CalcModel(new RevPolishCalcFactory());
   }
 
 
@@ -19,22 +23,21 @@ class TestCalcModel {
   // Test 1; fail; Completed the CalcModel.java code
   void testEvaluateStandard() throws InvalidExpressionException {
 
-    // Standard Calculator notation set on
-    cm.setInfixCalculation(true);
+    cmStandard.setInfixCalculation(true); // Set infix calculation explicitly
 
-    float answere = cm.evaluate("7 + 7", true);
+    float answere = cmStandard.evaluate("7 + 7", Boolean.TRUE);
     assertEquals(14f, answere, 0.001f);
 
-    answere = cm.evaluate("6.8 * 1.2", true);
+    answere = cmStandard.evaluate("6.8 * 1.2", Boolean.TRUE);
     assertEquals(8.16f, answere, 0.001f);
 
-    answere = cm.evaluate("( 4 + 3 ) * ( 5 - 2 )", true);
+    answere = cmStandard.evaluate("( 4 + 3 ) * ( 5 - 2 )", Boolean.TRUE);
     assertEquals(21f, answere, 0.001f);
 
-    answere = cm.evaluate("( 12 * 2 ) - ( 144 / 12 )", true);
+    answere = cmStandard.evaluate("( 12 * 2 ) - ( 144 / 12 )", Boolean.TRUE);
     assertEquals(12f, answere, 0.001f);
 
-    answere = cm.evaluate(" ( 3 * 5 ) - 2", true);
+    answere = cmStandard.evaluate(" ( 3 * 5 ) - 2", Boolean.TRUE);
     assertEquals(13f, answere, 0.001f);
   }
 
@@ -42,30 +45,31 @@ class TestCalcModel {
   // Test 2;
   void testEvaluateReversePolish() throws InvalidExpressionException {
 
-    // Reverse Polish Calculation set on
-    cm.setInfixCalculation(false);
+    cmReversePolish.setInfixCalculation(false); // Set reverse polish calculation explicitly
 
-    float answere = cm.evaluate("7 7 +", false);
+    float answere = cmReversePolish.evaluate("7 7 +", Boolean.FALSE);
     assertEquals(14f, answere, 0.001f);
 
-    answere = cm.evaluate("6.8 1.2 *", false);
+    answere = cmReversePolish.evaluate("6.8 1.2 *", Boolean.FALSE);
     assertEquals(8.16f, answere, 0.001f);
 
-    answere = cm.evaluate("4 3 + 5 2 - *", false);
+    answere = cmReversePolish.evaluate("4 3 + 5 2 - *", Boolean.FALSE);
     assertEquals(21f, answere, 0.001f);
 
-    answere = cm.evaluate("12 2 * 144 12 / -", false);
+    answere = cmReversePolish.evaluate("12 2 * 144 12 / -", Boolean.FALSE);
     assertEquals(12f, answere, 0.001f);
 
-    answere = cm.evaluate("3 5 * 2 -", false);
+    answere = cmReversePolish.evaluate("3 5 * 2 -", Boolean.FALSE);
     assertEquals(13f, answere, 0.001f);
   }
 
 
   @Test
   void testMismatchedExpressionFormat() {
-    assertThrows(InvalidExpressionException.class, () -> cm.evaluate("2 3 + 4 *", true));
-    assertThrows(InvalidExpressionException.class, () -> cm.evaluate("(2 + 3) * 4", false));
+    assertThrows(InvalidExpressionException.class,
+        () -> cmStandard.evaluate("2 3 + 4 *", Boolean.TRUE));
+    assertThrows(InvalidExpressionException.class,
+        () -> cmReversePolish.evaluate("(2 + 3) * 4", Boolean.FALSE));
   }
 
 }
