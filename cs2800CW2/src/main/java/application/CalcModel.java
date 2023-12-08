@@ -30,44 +30,22 @@ package application;
 public class CalcModel implements Calculator {
 
 
-  private StandardCalc stc;
-  private RevPolishCalc rpc;
 
   private boolean infixCalculation;
 
 
-  /**
-   * Constructs a new CalcModel instance with initialized StandardCalc and RevPolishCalc objects.
-   */
-  public CalcModel() {
-    stc = new StandardCalc();
-    rpc = new RevPolishCalc();
-  }
+
+  private CalculatorFactory calculatorFactory;
 
 
   /**
-   * Evaluates a mathematical expression in Standard (infix) notation.
+   * Constructs a new CalcModel instance with a specified CalculatorFactory.
    *
-   * @param expression The mathematical expression to be evaluated.
-   * @return The result of the evaluation.
-   * @throws InvalidExpressionException If the expression is invalid or cannot be evaluated.
+   * @param calculatorFactory The factory to create instances of the Calculator.
    */
-  private float evaluateStandard(String expression) throws InvalidExpressionException {
-    return stc.evaluate(expression);
+  public CalcModel(CalculatorFactory calculatorFactory) {
+    this.calculatorFactory = calculatorFactory;
   }
-
-
-  /**
-   * Evaluates a mathematical expression in Reverse Polish Notation (RPN).
-   *
-   * @param expression The mathematical expression in RPN.
-   * @return The result of the evaluation.
-   * @throws InvalidExpressionException If the expression is invalid or cannot be evaluated.
-   */
-  private float evaluateReversePolish(String expression) throws InvalidExpressionException {
-    return rpc.evaluate(expression);
-  }
-
 
 
   /**
@@ -97,12 +75,8 @@ public class CalcModel implements Calculator {
       throw new InvalidExpressionException(
           "Mismatch between expression format and calculation type");
     }
-    if (infixCalculation) {
-      // Evaluate using standard (infix) notation
-      return evaluateStandard(expression);
-    } else {
-      // Evaluate using reverse polish notation
-      return evaluateReversePolish(expression);
-    }
+    // Use the factory to create a calculator
+    Calculator calculator = calculatorFactory.createCalculator();
+    return calculator.evaluate(expression, infix);
   }
 }
